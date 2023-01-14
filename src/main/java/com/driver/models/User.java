@@ -36,21 +36,14 @@ public class User {
     public User() {
     }
 
-    public User(int id, String username, String password, String firstName, String lastName) {
-        this.id = id;
+    public User( String username, String password, String firstName, String lastName) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;

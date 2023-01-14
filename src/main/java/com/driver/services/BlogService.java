@@ -42,7 +42,7 @@ public class BlogService {
 //        userRepository1.findById(userId).get();
         Blog blog = new Blog(title, content);
         User user = userRepository1.findById(userId).get();
-        com.sun.tools.javac.util.List<Blog> listofblogs = user.getBlogList();
+        List<Blog> listofblogs = user.getBlogList();
         listofblogs.add(blog);
         user.setBlogList(listofblogs);
 

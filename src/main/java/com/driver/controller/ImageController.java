@@ -25,7 +25,7 @@ public class ImageController {
     }
 
     @GetMapping("/countImagesInScreen/{id}/{screenDimensions}")
-    public ResponseEntity<Integer> countImagesInScreen(@PathVariable int id, @PathVariable String screenDimensions){
+    public ResponseEntity<Integer> countImagesInScreen(@PathVariable Image id, @PathVariable String screenDimensions){
         imageService.countImagesInScreen(id, screenDimensions);
         int count = 0;
         return new ResponseEntity<>(count, HttpStatus.OK);
