@@ -1,14 +1,10 @@
 package com.driver.models;
-
-
 import javax.persistence.*;
-import javax.swing.text.StringContent;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table
-
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +14,14 @@ public class Blog {
     private Date pubDate;
     public Blog() {
     }
+    public int getId() {
 
+        return id;
+    }
+    public void setId(int id) {
+
+        this.id = id;
+    }
     public String getTitle() {
 
         return title;
