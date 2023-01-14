@@ -24,6 +24,11 @@ public class User {
         return blogList;
     }
 
+//    public List<Blog> getBlogList() {
+//        return blogList;
+//    }
+
+
     public void setBlogList(List<Blog> blogList) {
         this.blogList = blogList;
     }
