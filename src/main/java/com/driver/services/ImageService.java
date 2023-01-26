@@ -19,49 +19,48 @@ public class ImageService {
 
     public Image createAndReturn(Blog blog, String description, String dimensions){
         //create an image based on given parameters and add it to the imageList of given blog
-        Image image = new Image(description,dimensions);
+        Image image = new Image();
+        image.setDimensions(dimensions);
+        image.setDescription(description);
+
         image.setBlog(blog);
 
-        // this will handle the base condition;
-        //if your imagelist is null
+        List<Image> list=blog.getImageList();
 
-        List<Image>  listofimages= blog.getImageList();
-        if (Objects.isNull(listofimages)) {
-            listofimages = new ArrayList<>();
+        if(list == null) {
+            list= new ArrayList<>();
         }
-        listofimages.add(image);
-        blog.setImageList(listofimages);
+        list.add(image);
+
+        blog.setImageList(list);
+
         imageRepository2.save(image);
         blogRepository.save(blog);
+
         return image;
     }
 
     public void deleteImage(Image image){
-
-        Blog blog = image.getBlog();
-
-        List<Image> list = blog.getImageList();
-
-        list.remove(image);
-
-        blog.setImageList(list);
 
         imageRepository2.delete(image);
 
     }
 
     public Image findById(int id) {
+
         return imageRepository2.findById(id).get();
     }
 
     public int countImagesInScreen(Image image, String screenDimensions) {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
         //In case the image is null, return 0
-        return 0;
+        if(screenDimensions.split("X").length==2 || Objects.nonNull(image)){
+            Integer maxLength= Integer.parseInt(screenDimensions.split("X")[0])/Integer.parseInt(image.getDimensions().split("X")[0]);
+            Integer maxWidth= Integer.parseInt(screenDimensions.split("X")[1])/Integer.parseInt(image.getDimensions().split("X")[1]);
+
+            return  maxWidth*maxLength;
+        }
+        return  0;
     }
 
-    public void deleteImage(int id) {
-//        Image image = imageRepository2.getOne(id);
-        deleteImage(id);
-    }
 }
